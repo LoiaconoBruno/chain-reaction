@@ -1,0 +1,10 @@
+{
+  "name": "torre-de-domino",
+  "version": "0.1.0",
+  "description": "Metáfora interactiva de energía de activación y reacción en cadena",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Torre de Dominó</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pista { font-size: 0.9rem; background: var(--surface-2); border-radius: 8px; padding: 8px 10px; margin-top: 12px; }
+    .check { display: flex; gap: 8px; align-items: center; margin-top: 12px; color: var(--text); }
+    ul.compacta { margin: 0; padding-left: 18px; }
+    ul.compacta li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1>Torre de Dominó</h1>
+    <p>Energía de activación, metaestabilidad y reacción en cadena con fichas de dominó. Ajustá la barrera, empujá la primera ficha y mirá hasta dónde llega.</p>
+  </header>
+
+  <main>
+    <div class="layout">
+      <section class="card" aria-labelledby="t-param">
+        <h2 id="t-param">Parámetros</h2>
+        <label for="modo">Geometría</label>
+        <select id="modo">
+          <option value="fila">Fila de dominó (la energía va hacia adelante)</option>
+          <option value="red">Red (la energía se reparte en 4 direcciones)</option>
+        </select>
+        <label for="Ea">Energía de activación (Ea) <span class="val" id="v-Ea"></span></label>
+        <input type="range" id="Ea" min="0.5" max="12" step="0.1">
+        <label for="Q">Energía que libera cada ficha (Q) <span class="val" id="v-Q"></span></label>
+        <input type="range" id="Q" min="1" max="20" step="0.5">
+        <label for="eta">Fracción que llega a la vecina (η) <span class="val" id="v-eta"></span></label>
+        <input type="range" id="eta" min="0" max="1" step="0.05">
+        <label for="E0">Empujón inicial <span class="val" id="v-E0"></span></label>
+        <input type="range" id="E0" min="0" max="15" step="0.5">
+        <label for="variabilidad">Variabilidad de Ea entre fichas <span class="val" id="v-variabilidad"></span></label>
+        <input type="range" id="variabilidad" min="0" max="0.5" step="0.05">
+        <label class="check"><input type="checkbox" id="catalizador"> Catalizador (baja Ea a la mitad)</label>
+        <div class="row" style="margin-top:14px">
+          <button id="empujar" class="primary">Empujar</button>
+          <button id="reiniciar">Reiniciar</button>
+        </div>
+        <div class="pista" id="pista" aria-live="polite"></div>
+      </section>
+
+      <div style="display:grid; gap:16px; min-width:0">
+        <section class="card">
+          <h2>Fichas</h2>
+          <canvas id="tablero" aria-label="Fichas de dominó: en pie, cayendo o caídas"></canvas>
+          <div class="stats" style="margin-top:12px" aria-live="polite">
+            <div class="stat"><div class="k">Fichas caídas</div><div class="v" id="s-caidas">—</div></div>
+            <div class="stat"><div class="k">Pasos</div><div class="v" id="s-pasos">—</div></div>
+            <div class="stat"><div class="k">Energía liberada</div><div class="v" id="s-energia">—</div></div>
+            <div class="stat"><div class="k">Resultado</div><div class="v" id="s-res">—</div></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Perfil de energía de una ficha</h2>
+          <canvas id="perfil" aria-label="Energía a lo largo de la reacción: reactivos, barrera y productos"></canvas>
+          <p class="small muted">La ficha en pie (reactivos) está quieta, pero no a salvo: para caer necesita superar la barrera Ea. La energía que libera no sale de "romper" nada, sino de que el estado final (en el piso) está mucho más abajo.</p>
+        </section>
+
+        <section class="card">
+          <h2>Dónde falla la metáfora</h2>
+          <ul class="compacta">
+            <li><b>Romper enlaces no libera energía, la consume.</b> La energía de un explosivo sale de que los productos que se forman son mucho más estables que la molécula original. El enlace débil explica por qué la reacción <i>arranca</i> fácil, no de dónde sale la energía.</li>
+            <li><b>Una detonación no va "de arriba hacia abajo".</b> Se propaga como una onda en todas direcciones: por eso existe el modo red.</li>
+            <li><b>Las fichas no se reparten la energía así de prolijo.</b> El modelo es una caricatura para ver el umbral, no una simulación química.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>Herramienta didáctica y conceptual: muestra cómo se comporta la energía, no cómo se fabrica nada.</footer>
+
+  <script src="src/grafico.js"></script>
+  <script src="src/reaccion.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
