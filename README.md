@@ -4,7 +4,7 @@
 
 **Torre de Dominó.** Energía de activación, metaestabilidad y reacción en cadena, explicadas con fichas de dominó que caen (o no).
 
-[**▶ Probala en vivo**](https://loiaconobruno.github.io/chain-reaction/) · [Cómo funciona](#cómo-funciona) · [Limitaciones](#limitaciones)
+[**▶ Probala en vivo**](https://loiaconobruno.github.io/chain-reaction/) · [**📄 Paper y guía**](https://loiaconobruno.github.io/chain-reaction/guia.html) · [Cómo funciona](#cómo-funciona) · [Limitaciones](#limitaciones)
 
 [![Tests](https://github.com/LoiaconoBruno/chain-reaction/actions/workflows/tests.yml/badge.svg)](https://github.com/LoiaconoBruno/chain-reaction/actions/workflows/tests.yml)
 ![Dependencias: 0](https://img.shields.io/badge/dependencias-0-brightgreen)
@@ -74,6 +74,10 @@ npm test
 - Modo "dominós crecientes": cada ficha 1,5 veces más grande que la anterior, como en el experimento de Lorne Whitehead (*American Journal of Physics*, 1983), para mostrar la amplificación.
 - Armar el prototipo con fichas reales y probarlo con alguien que no sepa química.
 - Agregar un recorrido guiado para clase: torre estable → empujón mínimo → cascada → historia de Sobrero (1847) y Nobel (dinamita, 1867).
+
+## Paper de uso y guía
+
+[`guia.html`](https://loiaconobruno.github.io/chain-reaction/guia.html) (fuente en [`docs/guia.md`](docs/guia.md)) tiene un paper de uso paso a paso y una guía de unas 20 páginas sobre la idea de fondo, con citas a los especialistas del tema.
 
 ## Licencia
 
