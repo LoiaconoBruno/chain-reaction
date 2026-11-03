@@ -1,10 +1,16 @@
 {
-  "name": "torre-de-domino",
+  "name": "chain-reaction",
   "version": "0.1.0",
-  "description": "Metáfora interactiva de energía de activación y reacción en cadena",
+  "description": "Energía de activación y reacción en cadena explicadas con fichas de dominó interactivas.",
   "private": true,
   "license": "MIT",
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "homepage": "https://loiaconobruno.github.io/chain-reaction/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoiaconoBruno/chain-reaction.git"
+  },
+  "author": "Bruno Loiacono"
 }

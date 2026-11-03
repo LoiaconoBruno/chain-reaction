@@ -1,4 +1,19 @@
-# Torre de Dominó
+<div align="center">
+
+# Chain Reaction
+
+**Torre de Dominó.** Energía de activación, metaestabilidad y reacción en cadena, explicadas con fichas de dominó que caen (o no).
+
+[**▶ Probala en vivo**](https://loiaconobruno.github.io/chain-reaction/) · [Cómo funciona](#cómo-funciona) · [Limitaciones](#limitaciones)
+
+[![Tests](https://github.com/LoiaconoBruno/chain-reaction/actions/workflows/tests.yml/badge.svg)](https://github.com/LoiaconoBruno/chain-reaction/actions/workflows/tests.yml)
+![Dependencias: 0](https://img.shields.io/badge/dependencias-0-brightgreen)
+![HTML, CSS y JavaScript](https://img.shields.io/badge/HTML%20%C2%B7%20CSS%20%C2%B7%20JS-sin%20build-f7df1e)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue)](LICENSE)
+
+<img src="docs/captura.png" alt="Captura de Chain Reaction" width="800">
+
+</div>
 
 Página interactiva que usa fichas de dominó como metáfora de tres conceptos de química y física: **energía de activación** (el empujoncito que hace falta para que algo empiece), **metaestabilidad** (algo quieto pero no a salvo) y **reacción en cadena** (cada pieza que cae libera energía suficiente para tirar a la siguiente).
 
@@ -8,11 +23,23 @@ En el pizarrón esos conceptos son abstractos. Con fichas que caen (o no) según
 
 ## Instalación
 
-No hace falta instalar nada. Es una página estática sin dependencias. Para correr los tests hace falta Node 18 o más nuevo.
+No hace falta instalar nada: **[abrila en el navegador](https://loiaconobruno.github.io/chain-reaction/)**.
+
+Para usarla sin conexión o modificarla:
+
+```bash
+git clone https://github.com/LoiaconoBruno/chain-reaction.git
+```
+
+Después abrí `index.html` con doble clic. No hay dependencias ni paso de build. Para correr los tests hace falta Node 18 o más nuevo:
+
+```bash
+npm test
+```
 
 ## Uso
 
-Abrí `index.html` con doble clic.
+Abrí la [demo en vivo](https://loiaconobruno.github.io/chain-reaction/) o `index.html` con doble clic.
 
 Ejemplo:
 
