@@ -294,7 +294,61 @@ donde D mide cuán rápido se difunde algo y r cuán rápido se multiplica. La m
 
 En combustión se distinguen dos regímenes de propagación: la **deflagración**, en la que el frente avanza por conducción de calor a velocidades por debajo de la del sonido (una vela, una cocina a gas), y la **detonación**, en la que avanza como una onda de choque. La segunda es la que la tarjeta "Dónde falla la metáfora" menciona al decir que una detonación se propaga en todas direcciones. La herramienta no modela ninguna de las dos en detalle: su frente es una caricatura que sirve para ver que la propagación depende de un umbral local.
 
-### 19. Del modelo al código
+### 19. Tres cadenas que cambiaron el mundo
+
+La reacción en cadena no es solo un concepto de manual. Tres ejemplos muestran su alcance, para bien y para mal, y cada uno ilumina un parámetro distinto de la herramienta.
+
+#### 19.1 El cloro y el ozono: un catalizador que no se gasta
+
+En 1974, Mario Molina y F. Sherwood Rowland publicaron en *Nature* (249, 810–812) un artículo de tres páginas con una advertencia. Los clorofluorocarbonos (CFC), gases usados en aerosoles y heladeras, considerados inertes e inofensivos, suben lentamente hasta la estratosfera. Allí la radiación ultravioleta los rompe y libera átomos de cloro. Cada átomo de cloro reacciona con una molécula de ozono, formando monóxido de cloro y oxígeno; el monóxido de cloro reacciona con un átomo de oxígeno y **devuelve el átomo de cloro libre**, listo para destruir otra molécula de ozono. Es una reacción en cadena catalítica: el cloro no se consume. Se estima que un solo átomo de cloro puede destruir del orden de cien mil moléculas de ozono antes de quedar atrapado en una forma inactiva.
+
+En el lenguaje de la herramienta, cada átomo de cloro es una ficha que nunca termina de caer: libera la energía para tirar a la siguiente y vuelve a pararse. La cadena se termina solo por reacciones de **terminación**, que secuestran el cloro en compuestos estables.
+
+En 1985, Joseph Farman, Brian Gardiner y Jonathan Shanklin, del British Antarctic Survey, publicaron la detección de una caída dramática del ozono sobre la Antártida en primavera (*Nature*, 315, 207–210): el "agujero de ozono". El Protocolo de Montreal de 1987 acordó eliminar progresivamente los CFC, y es considerado uno de los tratados ambientales más exitosos de la historia. Paul Crutzen, Molina y Rowland recibieron el Premio Nobel de Química en 1995. Mario Molina, nacido en México, fue el primer mexicano en recibir un Nobel de ciencias.
+
+La lección para la herramienta: una cadena catalítica puede tener efectos enormes con cantidades mínimas del agente que la inicia, y su peligro no está en la energía de cada paso sino en que el agente se regenera.
+
+#### 19.2 La polimerización: cadenas que construyen
+
+No todas las reacciones en cadena destruyen. Muchos plásticos se fabrican por **polimerización en cadena**: una molécula reactiva (un iniciador) se une a una molécula pequeña (un monómero, como el etileno), y el producto sigue siendo reactivo, así que se une a otro monómero, y a otro, formando una cadena de miles de unidades. Así se producen el polietileno, el poliestireno y el PVC.
+
+La idea de que existían moléculas gigantes formadas por la unión de miles de unidades fue resistida durante años. Hermann Staudinger la defendió desde 1920 (*Berichte der Deutschen Chemischen Gesellschaft*, 53, 1073–1085), contra la opinión dominante de que esas sustancias eran agregados de moléculas chicas. Recibió el Premio Nobel de Química en 1953. Karl Ziegler y Giulio Natta desarrollaron en los años cincuenta catalizadores que permitían controlar la polimerización y obtener plásticos con propiedades precisas, y compartieron el Nobel de 1963.
+
+En la polimerización, las tres etapas de una reacción en cadena se ven con claridad: **iniciación** (el iniciador activa el primer monómero), **propagación** (la cadena crece) y **terminación** (dos cadenas reactivas se encuentran y se anulan, o la cadena se transfiere). La longitud final de las cadenas, y con ella las propiedades del plástico, depende de la competencia entre propagación y terminación: un equilibrio parecido al de la condición η · Q ≥ Ea de la fila, pero en el que lo que se controla es cuánto dura la cadena antes de cortarse.
+
+#### 19.3 La PCR: una cadena que se duplica
+
+En 1983, Kary Mullis, químico de la empresa Cetus, tuvo la idea de la **reacción en cadena de la polimerasa** (PCR). Se parte de una muestra con unas pocas copias de un fragmento de ADN. Se calienta para separar las dos hebras, se enfría para que se peguen unos cebadores cortos en los extremos del fragmento y una enzima, la ADN polimerasa, copia cada hebra. Al final del ciclo, hay el doble de copias. Repitiendo el ciclo treinta veces, una sola copia se convierte en unos mil millones. Randall Saiki, Mullis y colaboradores publicaron la primera aplicación en 1985 (*Science*, 230(4732), 1350–1354), y Mullis recibió el Premio Nobel de Química en 1993. La PCR se volvió una de las técnicas más usadas de la biología: diagnóstico, medicina forense, paleogenética, y, durante la pandemia de COVID-19, la prueba de referencia para detectar el virus.
+
+La PCR es la versión más pura de una cadena ramificada: cada copia produce dos en el ciclo siguiente, un factor de multiplicación k = 2, y el número crece como 2ⁿ. A diferencia de una explosión, la cadena está controlada por el ciclo de temperatura: no avanza sola sino un paso por ciclo, como la simulación de la herramienta avanza un paso por ronda. Y se detiene cuando se agotan los ingredientes (cebadores, nucleótidos), que es la versión química del tope de fichas de la red.
+
+### 20. La herramienta en el aula de química
+
+#### 20.1 Qué conceptos cubre y cuáles no
+
+En los programas de química de la escuela secundaria, la energía de activación, los catalizadores y la diferencia entre reacciones exotérmicas y endotérmicas aparecen en el estudio de la cinética y la termoquímica. La herramienta cubre bien:
+
+- la existencia de una barrera que hay que superar para que una reacción empiece, aunque libere energía;
+- la diferencia entre la energía liberada (Q, termodinámica) y la barrera (Ea, cinética);
+- el efecto de un catalizador: baja la barrera sin cambiar la energía liberada;
+- la idea de umbral y de propagación.
+
+No cubre, y conviene complementarlo:
+
+- la **temperatura**: en una reacción real, la "mano que empuja" es la agitación térmica, y la fracción de moléculas que supera la barrera depende de la temperatura según Arrhenius;
+- la **concentración**: la velocidad depende de cuántas moléculas hay por volumen, algo que la ley de acción de masas de Cato Guldberg y Peter Waage formuló en 1864;
+- el **equilibrio químico**: muchas reacciones no van hasta el final sino hasta un equilibrio entre reactivos y productos, que se desplaza según el principio de Le Chatelier;
+- las reacciones **endotérmicas**, que absorben energía: en la metáfora, fichas que hay que levantar, no tirar.
+
+#### 20.2 Una secuencia didáctica de tres clases
+
+1. **Primera clase: la ficha.** Fichas reales sobre la mesa. Medir con una regla cuánto sube el centro de masa al inclinar una ficha y cuánto baja al caer. Introducir Ea y Q. Usar la herramienta en modo fila para encontrar la condición η · Q ≥ Ea.
+2. **Segunda clase: el catalizador y la temperatura.** Usar el catalizador de la herramienta. Después, discutir qué pasaría si las fichas temblaran (temperatura): algunas caerían solas. Conectar con la ecuación de Arrhenius y con ejemplos cotidianos (la heladera conserva los alimentos porque baja la velocidad de las reacciones de descomposición).
+3. **Tercera clase: las cadenas.** Modo red, variabilidad y percolación. Discutir el ozono y la PCR como cadenas reales. Cerrar con la tarjeta "Dónde falla la metáfora" y con la pregunta de dónde sale la energía en una reacción exotérmica.
+
+La secuencia tiene un orden deliberado: de lo concreto (fichas que se pueden tocar) a lo abstracto (moléculas que no se ven), y de la metáfora a sus límites. Es el orden que recomienda la investigación en didáctica de las ciencias para trabajar con analogías: presentarla, usarla y, al final, señalar explícitamente dónde deja de valer, para que no se convierta en un error conceptual.
+
+### 21. Del modelo al código
 
 | Concepto | Función en `src/reaccion.js` | Qué produce en la página |
 |---|---|---|
@@ -314,7 +368,7 @@ R.simular({ modo: "fila", Ea: 6, Q: 8, eta: 0.7, E0: 6 }).caidas;        // 1
 R.simular({ modo: "red", ancho: 25, alto: 15, Ea: 1.2 }).pasos.length;   // 20
 ```
 
-### 20. Recorrido para clase
+### 22. Recorrido para clase
 
 La idea original pedía un recorrido guiado para usar la herramienta en clase. Esta es una propuesta de 30 minutos.
 
@@ -325,7 +379,7 @@ La idea original pedía un recorrido guiado para usar la herramienta en clase. E
 5. **El catalizador (5 min).** Con Ea = 6, la fila se corta. Marcar catalizador: cae todo. Preguntar: ¿se liberó más energía? No: 192 en los dos casos. El catalizador cambió el camino, no el destino.
 6. **Dónde falla (5 min).** Leer juntos la tarjeta "Dónde falla la metáfora". Pedir que cada estudiante escriba, con sus palabras, de dónde sale la energía en una reacción química exotérmica. Corregir el error de "romper enlaces libera energía".
 
-### 21. Ejercicios
+### 23. Ejercicios
 
 1. Con Q = 8 y η = 0,7, ¿cuál es la Ea máxima que permite una cadena completa en la fila? ¿Y en la red?
 2. Si se duplica Q, ¿cuánto puede subir Ea? ¿Y si se duplica η?
@@ -335,7 +389,7 @@ La idea original pedía un recorrido guiado para usar la herramienta en clase. E
 6. Una epidemia tiene R₀ = 3. ¿Qué fracción de la población hay que vacunar para que no pueda sostenerse? Relacionalo con la condición de la fila.
 7. Diseñá en papel el modo "dominós crecientes" de Whitehead: ¿cómo cambiarían Q y Ea de ficha a ficha? ¿Qué condición tendría que cumplirse para que la cadena se sostenga?
 
-### 22. Glosario
+### 24. Glosario
 
 - **Energía de activación (Ea):** energía mínima que hay que aportar para que un proceso empiece.
 - **Estado de transición:** configuración de máxima energía en el camino de reactivos a productos.
@@ -348,11 +402,11 @@ La idea original pedía un recorrido guiado para usar la herramienta en clase. E
 - **Nucleación:** formación del primer núcleo de una fase nueva, que requiere superar una barrera.
 - **Exotérmica:** reacción que libera energía, porque los productos tienen menos energía que los reactivos.
 
-### 23. Conclusión
+### 25. Conclusión
 
 Una fila de fichas de dominó reúne, en un objeto de juguete, tres ideas que la química tardó décadas en formular: que casi todo lo que puede liberar energía necesita un empujón inicial (Arrhenius, Eyring, Evans y Polanyi), que las cosas pueden estar quietas sin estar a salvo (el diamante, el agua sobreenfriada, el vidrio), y que una liberación de energía puede sostenerse sola si cada eslabón activa al siguiente (Bodenstein, Semenov, Hinshelwood, y después la física nuclear, la neurofisiología de Hodgkin y Huxley y la epidemiología de Kermack y McKendrick). La herramienta reduce todo a una desigualdad, η · Q ≥ Ea, y deja ver en segundos qué pasa a cada lado del umbral, qué hace un catalizador y por qué una red es más robusta que una fila.
 
-También deja claro dónde la metáfora deja de servir: romper enlaces no libera energía, las reacciones reales tienen temperatura y difusión, y los frentes químicos no avanzan de a una ficha. Los próximos pasos que el proyecto propone son agregar el modo de dominós crecientes de Whitehead, probar el prototipo con fichas reales con alguien que no sepa química y armar el recorrido guiado para clase que esta guía esboza en la sección 20.
+También deja claro dónde la metáfora deja de servir: romper enlaces no libera energía, las reacciones reales tienen temperatura y difusión, y los frentes químicos no avanzan de a una ficha. Los próximos pasos que el proyecto propone son agregar el modo de dominós crecientes de Whitehead, probar el prototipo con fichas reales con alguien que no sepa química y armar el recorrido guiado para clase que esta guía esboza en la sección 22.
 
 ## Referencias
 
@@ -365,9 +419,11 @@ También deja claro dónde la metáfora deja de servir: romper enlaces no libera
 - Broadbent, S. R., & Hammersley, J. M. (1957). Percolation processes: I. Crystals and mazes. *Mathematical Proceedings of the Cambridge Philosophical Society*, 53(3), 629–641. https://doi.org/10.1017/S0305004100032680
 - Evans, M. G., & Polanyi, M. (1935). Some applications of the transition state method to the calculation of reaction velocities, especially in solution. *Transactions of the Faraday Society*, 31, 875–894. https://doi.org/10.1039/TF9353100875
 - Eyring, H. (1935). The activated complex in chemical reactions. *Journal of Chemical Physics*, 3(2), 107–115. https://doi.org/10.1063/1.1749604
+- Farman, J. C., Gardiner, B. G., & Shanklin, J. D. (1985). Large losses of total ozone in Antarctica reveal seasonal ClOx/NOx interaction. *Nature*, 315, 207–210. https://doi.org/10.1038/315207a0
 - Fisher, R. A. (1937). The wave of advance of advantageous genes. *Annals of Eugenics*, 7(4), 355–369. https://doi.org/10.1111/j.1469-1809.1937.tb02153.x
 - Galley, W. C. (2004). Exothermic bond breaking: A persistent misconception. *Journal of Chemical Education*, 81(4), 523–525. https://doi.org/10.1021/ed081p523
 - Gibbs, J. W. (1876–1878). On the equilibrium of heterogeneous substances. *Transactions of the Connecticut Academy of Arts and Sciences*, 3, 108–248 y 343–524.
+- Guldberg, C. M., & Waage, P. (1864). Studier over affiniteten. *Forhandlinger i Videnskabs-Selskabet i Christiania*, 35–45.
 - Hess, G. H. (1840). Thermochemische Untersuchungen. *Annalen der Physik und Chemie*, 126(6), 385–404. https://doi.org/10.1002/andp.18401260620
 - Hodgkin, A. L., & Huxley, A. F. (1952). A quantitative description of membrane current and its application to conduction and excitation in nerve. *Journal of Physiology*, 117(4), 500–544. https://doi.org/10.1113/jphysiol.1952.sp004764
 - Kermack, W. O., & McKendrick, A. G. (1927). A contribution to the mathematical theory of epidemics. *Proceedings of the Royal Society A*, 115(772), 700–721. https://doi.org/10.1098/rspa.1927.0118
@@ -377,9 +433,12 @@ También deja claro dónde la metáfora deja de servir: romper enlaces no libera
 - Mallard, E., & Le Chatelier, H. (1883). Recherches expérimentales et théoriques sur la combustion des mélanges gazeux explosifs. *Annales des Mines*, 8(4), 274–568.
 - McLachlan, B. G., Beaupre, G., Cox, A. B., & Gore, L. (1983). Falling dominoes (D. E. Daykin). *SIAM Review*, 25(3), 403–404. https://doi.org/10.1137/1025083
 - Meitner, L., & Frisch, O. R. (1939). Disintegration of uranium by neutrons: A new type of nuclear reaction. *Nature*, 143, 239–240. https://doi.org/10.1038/143239a0
+- Molina, M. J., & Rowland, F. S. (1974). Stratospheric sink for chlorofluoromethanes: Chlorine atom-catalysed destruction of ozone. *Nature*, 249, 810–812. https://doi.org/10.1038/249810a0
+- Saiki, R. K., Scharf, S., Faloona, F., Mullis, K. B., Horn, G. T., Erlich, H. A., & Arnheim, N. (1985). Enzymatic amplification of β-globin genomic sequences and restriction site analysis for diagnosis of sickle cell anemia. *Science*, 230(4732), 1350–1354. https://doi.org/10.1126/science.2999980
 - Semenov, N. N. (1935). *Chemical Kinetics and Chain Reactions*. Oxford: Clarendon Press.
 - Shaw, D. E. (1978). Mechanics of a chain of dominoes. *American Journal of Physics*, 46(6), 640–642. https://doi.org/10.1119/1.11221
 - Smil, V. (2001). *Enriching the Earth: Fritz Haber, Carl Bosch, and the Transformation of World Food Production*. MIT Press. ISBN 978-0-262-19449-5.
+- Staudinger, H. (1920). Über Polymerisation. *Berichte der Deutschen Chemischen Gesellschaft*, 53(6), 1073–1085. https://doi.org/10.1002/cber.19200530627
 - Stauffer, D., & Aharony, A. (1994). *Introduction to Percolation Theory* (2.ª ed.). Taylor & Francis. ISBN 978-0-7484-0253-3.
 - Whitehead, L. A. (1983). Domino "chain reaction". *American Journal of Physics*, 51(2), 182. https://doi.org/10.1119/1.13318
 - Wolfenden, R., & Snider, M. J. (2001). The depth of chemical time and the power of enzymes as catalysts. *Accounts of Chemical Research*, 34(12), 938–945. https://doi.org/10.1021/ar000058i
