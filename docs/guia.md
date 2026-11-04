@@ -134,7 +134,7 @@ Pero para pasar de parada a acostada, la ficha tiene que inclinarse, y al inclin
 
 En una fila, cada ficha al caer golpea a la siguiente, y la energía que le transfiere tiene que superar esa pequeña barrera. Como la barrera es mínima y la energía liberada es grande, la condición η · Q ≥ Ea se cumple con holgura incluso si se pierde mucha energía en el choque. La cadena se sostiene sola.
 
-D. E. Shaw estudió la mecánica de una fila de dominó en 1978 (*American Journal of Physics*, 46, 640–642). Robert McLachlan y colaboradores calcularon la velocidad con que se propaga la caída en *Falling dominoes* (*SIAM Review*, 25, 403–404, 1983), y Johannes van Leeuwen revisó el problema con detalle en 2010 (*American Journal of Physics*, 78, 721–727). Un resultado notable es que la velocidad de propagación alcanza un valor estacionario que depende de la separación y del tamaño de las fichas, no de cómo empezó la cadena: igual que en la herramienta, después del primer empujón la cadena "olvida" cómo arrancó.
+D. E. Shaw estudió la mecánica de una fila de dominó en 1978 (*American Journal of Physics*, 46, 640–642). B. G. McLachlan y colaboradores calcularon la velocidad con que se propaga la caída en *Falling dominoes* (*SIAM Review*, 25, 403–404, 1983), y Johannes van Leeuwen revisó el problema con detalle en 2010 (*American Journal of Physics*, 78, 721–727). Un resultado notable es que la velocidad de propagación alcanza un valor estacionario que depende de la separación y del tamaño de las fichas, no de cómo empezó la cadena: igual que en la herramienta, después del primer empujón la cadena "olvida" cómo arrancó.
 
 #### 11.3 Whitehead y la amplificación
 
@@ -429,9 +429,9 @@ También deja claro dónde la metáfora deja de servir: romper enlaces no libera
 - Kermack, W. O., & McKendrick, A. G. (1927). A contribution to the mathematical theory of epidemics. *Proceedings of the Royal Society A*, 115(772), 700–721. https://doi.org/10.1098/rspa.1927.0118
 - Kolmogorov, A. N., Petrovsky, I. G., & Piskunov, N. S. (1937). Étude de l'équation de la diffusion avec croissance de la quantité de matière et son application à un problème biologique. *Bulletin de l'Université d'État de Moscou, Série internationale, Section A*, 1(6), 1–26.
 - Kramers, H. A. (1940). Brownian motion in a field of force and the diffusion model of chemical reactions. *Physica*, 7(4), 284–304. https://doi.org/10.1016/S0031-8914(40)90098-2
-- van Leeuwen, J. M. J. (2010). The domino effect. *American Journal of Physics*, 78(7), 721–727. https://doi.org/10.1119/1.3360783
+- van Leeuwen, J. M. J. (2010). The domino effect. *American Journal of Physics*, 78(7), 721–727. https://doi.org/10.1119/1.3406154
 - Mallard, E., & Le Chatelier, H. (1883). Recherches expérimentales et théoriques sur la combustion des mélanges gazeux explosifs. *Annales des Mines*, 8(4), 274–568.
-- McLachlan, B. G., Beaupre, G., Cox, A. B., & Gore, L. (1983). Falling dominoes (D. E. Daykin). *SIAM Review*, 25(3), 403–404. https://doi.org/10.1137/1025083
+- McLachlan, B. G., Beaupre, G., Cox, A. B., & Gore, L. (1983). Falling dominoes (D. E. Daykin). *SIAM Review*, 25(3), 403–404. https://doi.org/10.1137/1025085
 - Meitner, L., & Frisch, O. R. (1939). Disintegration of uranium by neutrons: A new type of nuclear reaction. *Nature*, 143, 239–240. https://doi.org/10.1038/143239a0
 - Molina, M. J., & Rowland, F. S. (1974). Stratospheric sink for chlorofluoromethanes: Chlorine atom-catalysed destruction of ozone. *Nature*, 249, 810–812. https://doi.org/10.1038/249810a0
 - Saiki, R. K., Scharf, S., Faloona, F., Mullis, K. B., Horn, G. T., Erlich, H. A., & Arnheim, N. (1985). Enzymatic amplification of β-globin genomic sequences and restriction site analysis for diagnosis of sickle cell anemia. *Science*, 230(4732), 1350–1354. https://doi.org/10.1126/science.2999980
@@ -440,6 +440,6 @@ También deja claro dónde la metáfora deja de servir: romper enlaces no libera
 - Smil, V. (2001). *Enriching the Earth: Fritz Haber, Carl Bosch, and the Transformation of World Food Production*. MIT Press. ISBN 978-0-262-19449-5.
 - Staudinger, H. (1920). Über Polymerisation. *Berichte der Deutschen Chemischen Gesellschaft*, 53(6), 1073–1085. https://doi.org/10.1002/cber.19200530627
 - Stauffer, D., & Aharony, A. (1994). *Introduction to Percolation Theory* (2.ª ed.). Taylor & Francis. ISBN 978-0-7484-0253-3.
-- Whitehead, L. A. (1983). Domino "chain reaction". *American Journal of Physics*, 51(2), 182. https://doi.org/10.1119/1.13318
+- Whitehead, L. A. (1983). Domino "chain reaction". *American Journal of Physics*, 51(2), 182. https://doi.org/10.1119/1.13456
 - Wolfenden, R., & Snider, M. J. (2001). The depth of chemical time and the power of enzymes as catalysts. *Accounts of Chemical Research*, 34(12), 938–945. https://doi.org/10.1021/ar000058i
 - Zel'dovich, Y. B., & Frank-Kamenetskii, D. A. (1938). A theory of thermal propagation of flame. *Acta Physicochimica URSS*, 9, 341–350.
