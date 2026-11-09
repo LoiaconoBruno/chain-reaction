@@ -1,85 +1,167 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Torre de Dominó</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .pista { font-size: 0.9rem; background: var(--surface-2); border-radius: 8px; padding: 8px 10px; margin-top: 12px; }
-    .check { display: flex; gap: 8px; align-items: center; margin-top: 12px; color: var(--text); }
-    ul.compacta { margin: 0; padding-left: 18px; }
-    ul.compacta li { margin-bottom: 6px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reacción en cadena: energía de activación, metaestabilidad y propagación con fichas de dominó</title>
+<meta name="description" content="Preprint de Bruno Loiacono (estudiante de Física, UBA): Reacción en cadena: energía de activación, metaestabilidad y propagación con fichas de dominó.">
+<style>
+:root{--bg:#f7f6f2;--surface:#fff;--text:#1d1c1a;--muted:#5b574f;--border:#d9d5cb;--accent:#2a55c9;--accent-text:#fff;--aviso:#fdf3e1;--aviso-borde:#c27a12;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--surface:#1d1d21;--text:#ecebe7;--muted:#a8a59f;--border:#36363c;--accent:#8fb0ff;--accent-text:#0d0d10;--aviso:#2a2216;--aviso-borde:#e0a54a;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:18px/1.65 Georgia,"Iowan Old Style","Times New Roman",serif}
+.wrap{max-width:780px;margin:0 auto;padding:20px 16px 80px}
+.sans{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.aviso{font:600 14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--aviso);border:1px solid var(--aviso-borde);border-radius:8px;padding:8px 12px;margin:0 0 18px}
+h1{font-size:2rem;line-height:1.2;margin:8px 0 6px}
+.en{color:var(--muted);font-style:italic;margin:0 0 10px}
+.autor{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted);margin:0 0 16px}
+.acciones{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;font:15px system-ui,-apple-system,"Segoe UI",sans-serif}
+.boton{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);text-decoration:none}
+.boton.primario{background:var(--accent);border-color:var(--accent);color:var(--accent-text);font-weight:600}
+.boton:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+nav.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0 0 8px}
+nav.toc ul{margin:6px 0 0;padding:0;list-style:none}
+nav.toc li{margin:2px 0}
+h2{font-size:1.4rem;line-height:1.3;margin:44px 0 10px;padding-top:12px;border-top:1px solid var(--border)}
+h3{font-size:1.12rem;margin:28px 0 8px}
+h4{font-size:1rem;margin:22px 0 6px}
+.resumen{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px 18px 8px;margin:16px 0}
+.resumen h2{border:0;margin:12px 0 4px;padding:0;font-size:1.05rem}
+.clave{font-size:.95rem;color:var(--muted)}
+figure{margin:26px 0;padding:0}
+figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:8px}
+figcaption{font-size:.92rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.desliza{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+thead th{border-bottom:2px solid var(--text)}
+.ecuacion{overflow-x:auto;overflow-y:hidden;margin:14px 0}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden}
+blockquote{margin:16px 0;padding:2px 16px;border-left:3px solid var(--border);color:var(--muted)}
+code{font:.9em ui-monospace,"SF Mono",Menlo,monospace;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0 4px}
+ol.refs{padding-left:20px;font-size:.95rem}
+ol.refs li{margin-bottom:8px;overflow-wrap:anywhere}
+footer{margin-top:48px;padding-top:14px;border-top:1px solid var(--border);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted)}
+pre{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font:13px/1.5 ui-monospace,"SF Mono",Menlo,monospace}
+@media (max-width:600px){body{font-size:17px}h1{font-size:1.6rem}}
+@media print{.acciones,nav.toc{display:none}}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[["$","$"]],displayMath:[["\\[","\\]"]],tags:"ams",processEnvironments:true,processRefs:true,macros:{"unid": ["\\,\\mathrm{#1}", 1]}},chtml:{scale:1},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 </head>
 <body>
-  <header class="top">
-    <h1>Torre de Dominó</h1>
-    <p>Energía de activación, metaestabilidad y reacción en cadena con fichas de dominó. Ajustá la barrera, empujá la primera ficha y mirá hasta dónde llega.</p>
-    <p class="guia-link"><a href="guia.html">📄 Paper de uso y guía de la idea →</a></p>
-  </header>
-
-  <main>
-    <div class="layout">
-      <section class="card" aria-labelledby="t-param">
-        <h2 id="t-param">Parámetros</h2>
-        <label for="modo">Geometría</label>
-        <select id="modo">
-          <option value="fila">Fila de dominó (la energía va hacia adelante)</option>
-          <option value="red">Red (la energía se reparte en 4 direcciones)</option>
-        </select>
-        <label for="Ea">Energía de activación (Ea) <span class="val" id="v-Ea"></span></label>
-        <input type="range" id="Ea" min="0.5" max="12" step="0.1">
-        <label for="Q">Energía que libera cada ficha (Q) <span class="val" id="v-Q"></span></label>
-        <input type="range" id="Q" min="1" max="20" step="0.5">
-        <label for="eta">Fracción que llega a la vecina (η) <span class="val" id="v-eta"></span></label>
-        <input type="range" id="eta" min="0" max="1" step="0.05">
-        <label for="E0">Empujón inicial <span class="val" id="v-E0"></span></label>
-        <input type="range" id="E0" min="0" max="15" step="0.5">
-        <label for="variabilidad">Variabilidad de Ea entre fichas <span class="val" id="v-variabilidad"></span></label>
-        <input type="range" id="variabilidad" min="0" max="0.5" step="0.05">
-        <label class="check"><input type="checkbox" id="catalizador"> Catalizador (baja Ea a la mitad)</label>
-        <div class="row" style="margin-top:14px">
-          <button id="empujar" class="primary">Empujar</button>
-          <button id="reiniciar">Reiniciar</button>
-        </div>
-        <div class="pista" id="pista" aria-live="polite"></div>
-      </section>
-
-      <div style="display:grid; gap:16px; min-width:0">
-        <section class="card">
-          <h2>Fichas</h2>
-          <canvas id="tablero" aria-label="Fichas de dominó: en pie, cayendo o caídas"></canvas>
-          <div class="stats" style="margin-top:12px" aria-live="polite">
-            <div class="stat"><div class="k">Fichas caídas</div><div class="v" id="s-caidas">—</div></div>
-            <div class="stat"><div class="k">Pasos</div><div class="v" id="s-pasos">—</div></div>
-            <div class="stat"><div class="k">Energía liberada</div><div class="v" id="s-energia">—</div></div>
-            <div class="stat"><div class="k">Resultado</div><div class="v" id="s-res">—</div></div>
-          </div>
-        </section>
-
-        <section class="card">
-          <h2>Perfil de energía de una ficha</h2>
-          <canvas id="perfil" aria-label="Energía a lo largo de la reacción: reactivos, barrera y productos"></canvas>
-          <p class="small muted">La ficha en pie (reactivos) está quieta, pero no a salvo: para caer necesita superar la barrera Ea. La energía que libera no sale de "romper" nada, sino de que el estado final (en el piso) está mucho más abajo.</p>
-        </section>
-
-        <section class="card">
-          <h2>Dónde falla la metáfora</h2>
-          <ul class="compacta">
-            <li><b>Romper enlaces no libera energía, la consume.</b> La energía de un explosivo sale de que los productos que se forman son mucho más estables que la molécula original. El enlace débil explica por qué la reacción <i>arranca</i> fácil, no de dónde sale la energía.</li>
-            <li><b>Una detonación no va "de arriba hacia abajo".</b> Se propaga como una onda en todas direcciones: por eso existe el modo red.</li>
-            <li><b>Las fichas no se reparten la energía así de prolijo.</b> El modelo es una caricatura para ver el umbral, no una simulación química.</li>
-          </ul>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <footer>Herramienta didáctica y conceptual: muestra cómo se comporta la energía, no cómo se fabrica nada.</footer>
-
-  <script src="src/grafico.js"></script>
-  <script src="src/reaccion.js"></script>
-  <script src="src/app.js"></script>
+<main class="wrap">
+<p class="aviso">Preprint · documento de trabajo sin revisión por pares</p>
+<h1>Reacción en cadena: energía de activación, metaestabilidad y propagación con fichas de dominó</h1>
+<p class="en" lang="en">Chain reaction: activation energy, metastability and propagation with dominoes</p>
+<p class="autor">Bruno Loiacono · Estudiante de Física, Universidad de Buenos Aires · Noviembre de 2026</p>
+<div class="acciones">
+<a class="boton primario" href="paper/paper.pdf" download>Descargar PDF</a>
+<a class="boton" href="https://github.com/LoiaconoBruno/chain-reaction">Repositorio</a>
+<a class="boton" href="https://github.com/LoiaconoBruno/chain-reaction#cómo-citarlo">Cómo citarlo</a>
+</div>
+<nav class="toc" aria-label="Índice"><strong>Índice</strong><ul><li><a href="#sec:intro">1. Introducción</a></li><li><a href="#sec:antecedentes">2. Antecedentes</a></li><li><a href="#sec:modelo">3. Modelo</a></li><li><a href="#sec:resultados">4. Resultados</a></li><li><a href="#sec:discusion">5. Discusión y limitaciones</a></li><li><a href="#sec:conclusiones">6. Conclusiones y trabajo futuro</a></li><li><a href="#declaración-de-uso-de-ia">Declaración de uso de IA</a></li><li><a href="#referencias">Referencias</a></li></ul></nav>
+<p></p>
+<section class="resumen"><h2 id="resumen">Resumen</h2><p>Una torre de dominó quieta que con un empujoncito se desmorona y libera mucha más energía de la que hizo falta para empezar reúne tres ideas centrales de la química: la energía de activación, la metaestabilidad y la reacción en cadena. Este trabajo las formula con un modelo de fichas que caen si la energía recibida alcanza su barrera $E_a$ y que, al caer, liberan $Q$ y pasan una fracción $\eta$ a sus vecinas. En una fila, la cadena se sostiene si y solo si $\eta Q \ge E_a$; en una red cuadrada, hace falta $\eta Q/4 \ge E_a$ para salir del centro. Con barreras irregulares, la fila se corta en el primer eslabón débil y la red lo rodea: con una variabilidad de $\pm 20~\%$, en promedio cae el 21 % de la fila y el 98 % de la red. Para una ficha real de $48 \times 24 \times 7{,}5$ mm, la barrera es el 1,4 % de la energía liberada, y fichas semejantes, cada una 1,5 veces más grande, se siguen tirando mientras $\eta \ge 0{,}073$. Se discuten la teoría del estado de transición, los catalizadores, la metaestabilidad, las cadenas químicas, nucleares, nerviosas y epidémicas, y dónde falla la metáfora: romper enlaces no libera energía.</p></section>
+<section class="resumen" lang="en"><h2 id="abstract">Abstract</h2><p>A standing domino tower that collapses after a tiny push, releasing far more energy than it took to start, combines three central ideas of chemistry: activation energy, metastability and chain reactions. This paper formulates them with a model of tiles that fall when the energy they receive reaches their barrier $E_a$ and, upon falling, release $Q$ and pass a fraction $\eta$ to their neighbours. In a row, the chain sustains itself if and only if $\eta Q \ge E_a$; in a square lattice, $\eta Q/4 \ge E_a$ is needed to leave the centre. With irregular barriers, the row breaks at the first weak link while the lattice goes around it: with $\pm 20\%$ variability, on average 21% of the row and 98% of the lattice fall. For a real $48 \times 24 \times 7.5$ mm domino the barrier is 1.4% of the released energy, and geometrically similar dominoes, each 1.5 times larger, keep toppling as long as $\eta \ge 0.073$. Transition-state theory, catalysts, metastability, chemical, nuclear, neural and epidemic chains are discussed, together with where the metaphor fails: breaking bonds does not release energy.</p></section>
+<p class="clave"><strong>Palabras clave:</strong> energía de activación; metaestabilidad; reacción en cadena; catálisis; percolación; enseñanza de la química.</p>
+<p class="clave" lang="en"><strong>Keywords:</strong> activation energy; metastability; chain reaction; catalysis; percolation; chemistry education.</p>
+<h2 id="sec:intro">1. Introducción</h2>
+<p>La idea original era una imagen: una torre de fichas de dominó, quieta, que con un empujoncito se desmorona y libera mucha más energía de la que hizo falta para empezar. La imagen captura tres conceptos que la química formuló por separado:</p>
+<ol><li><strong>Energía de activación.</strong> Casi todo lo que puede liberar energía necesita primero que se le ponga un poco. Una ficha parada tiene energía guardada, porque está alta, pero para caer tiene que inclinarse primero y levantar un poco su centro de masa.</li><li><strong>Metaestabilidad.</strong> Algo que podría liberar energía pero no lo hace, porque está atrapado detrás de una barrera. La torre quieta no es estable en el sentido de «no tener a dónde ir», sino en el de «no moverse si nadie la toca».</li><li><strong>Reacción en cadena.</strong> Cuando la energía que libera una pieza alcanza para activar a la siguiente, el proceso se sostiene solo.</li></ol>
+<p>La sección <a href="#sec:antecedentes">2</a> cuenta de dónde vienen esos conceptos. La sección <a href="#sec:modelo">3</a> define un modelo de fichas, deriva sus condiciones de propagación y calcula la barrera de una ficha real. La sección <a href="#sec:resultados">4</a> evalúa el modelo en una fila y en una red. La sección <a href="#sec:discusion">5</a> discute los paralelos fuera de la química y dónde la metáfora deja de valer.</p>
+<h2 id="sec:antecedentes">2. Antecedentes</h2>
+<h3 id="la-física-de-las-fichas">2.1. La física de las fichas</h3>
+<p>Shaw (<a href="#ref-shaw1978">1978</a>) estudió la mecánica de una fila de fichas que caen; McLachlan et al. (<a href="#ref-mclachlan1983">1983</a>) calcularon la velocidad con que se propaga la caída, y van Leeuwen (<a href="#ref-vanleeuwen2010">2010</a>) analizó las fuerzas entre fichas, el rozamiento y la dependencia de la velocidad con el ancho, la altura y la separación de las fichas. Whitehead (<a href="#ref-whitehead1983">1983</a>) describió una fila en la que cada ficha es más grande que la anterior: como la barrera de cada una es chica frente a la energía que libera la anterior, la fila puede crecer de tamaño en cada paso y amplificar enormemente la energía del empujón inicial.</p>
+<h3 id="la-energía-de-activación">2.2. La energía de activación</h3>
+<p>Arrhenius (<a href="#ref-arrhenius1889">1889</a>) estudió cómo la temperatura acelera la inversión de la sacarosa en medio ácido y propuso que solo las moléculas con energía por encima de un umbral pueden reaccionar. La constante de velocidad queda</p>
+<div class="ecuacion">\begin{equation}\label{eq:arrhenius}
+k = A\, e^{-E_a/RT},
+\end{equation}</div>
+<p>con $A$ un factor de frecuencia con las unidades de $k$, $E_a$ en $\mathrm{J\,mol^{-1}}$, $R$ en $\mathrm{J\,mol^{-1}\,K^{-1}}$ y $T$ en K, de modo que el exponente es adimensional. Eyring (<a href="#ref-eyring1935">1935</a>) y, de manera independiente, Evans y Polanyi (<a href="#ref-evans1935">1935</a>) formularon la teoría del estado de transición: los reactivos pasan por una configuración intermedia, el complejo activado, que es el punto más alto del camino de menor energía, y la energía de activación es su altura sobre los reactivos. Kramers (<a href="#ref-kramers1940">1940</a>) trató el cruce de la barrera como el escape de una partícula de un pozo, sacudida por el ruido térmico y frenada por la fricción.</p>
+<h3 id="catalizadores">2.3. Catalizadores</h3>
+<p>Desde Berzelius, que acuñó la palabra en 1835, y Ostwald, que dio la definición moderna, un catalizador es una sustancia que cambia la velocidad de una reacción sin consumirse y sin modificar el equilibrio: baja la barrera y deja intacta la energía liberada. La síntesis de amoníaco de Haber y Bosch, con un catalizador de hierro, es la base de los fertilizantes de los que depende buena parte de la producción mundial de alimentos (Smil <a href="#ref-smil2001">2001</a>). Las enzimas son los catalizadores de la vida: algunas reacciones que catalizan tendrían, sin ellas, vidas medias comparables con la edad de la Tierra (Wolfenden y Snider <a href="#ref-wolfenden2001">2001</a>).</p>
+<h3 id="metaestabilidad">2.4. Metaestabilidad</h3>
+<p>Un estado es metaestable si resiste perturbaciones chicas pero no grandes, porque hay otro de menor energía detrás de una barrera. El diamante es metaestable frente al grafito a presión y temperatura ambiente, con una barrera tan alta que la conversión no se observa. El agua muy pura puede enfriarse por debajo de 0 °C sin congelarse hasta que aparece un núcleo de hielo, y entonces el congelamiento se propaga como una cadena. Un vidrio es un líquido que se enfrió tan rápido que quedó atrapado en una configuración desordenada; Anderson (<a href="#ref-anderson1995">1995</a>) lo consideró probablemente el problema sin resolver más profundo de la física del estado sólido.</p>
+<h3 id="reacciones-en-cadena">2.5. Reacciones en cadena</h3>
+<p>Bodenstein (<a href="#ref-bodenstein1913">1913</a>) encontró que en la reacción de hidrógeno y cloro iluminada reaccionaban muchísimas moléculas por cada fotón absorbido, y propuso que la reacción procedía en cadena: el fotón produce una especie reactiva que reacciona y produce otra, en etapas de iniciación, propagación y terminación. Semenov (<a href="#ref-semenov1935">1935</a>) desarrolló la teoría de las cadenas ramificadas, en las que cada eslabón produce más de una especie activa y la reacción pasa de lenta a explosiva al cruzar ciertos límites. Staudinger (<a href="#ref-staudinger1920">1920</a>) defendió la existencia de las macromoléculas que hoy se fabrican por polimerización en cadena. Molina y Rowland (<a href="#ref-molina1974">1974</a>) mostraron que el cloro liberado por los clorofluorocarbonos destruye el ozono en una cadena catalítica en la que el cloro se regenera, y Farman et al. (<a href="#ref-farman1985">1985</a>) midieron las grandes pérdidas de ozono sobre la Antártida. Saiki et al. (<a href="#ref-saiki1985">1985</a>) publicaron la primera aplicación de la reacción en cadena de la polimerasa, en la que cada copia de ADN produce dos en el ciclo siguiente.</p>
+<p>El concepto saltó a la física con la fisión nuclear, que Meitner y Frisch (<a href="#ref-meitner1939">1939</a>) interpretaron poco después de su descubrimiento: cada fisión libera neutrones que pueden producir nuevas fisiones. También describe el impulso nervioso, que Hodgkin y Huxley (<a href="#ref-hodgkin1952">1952</a>) modelaron como una despolarización que, al superar un umbral, despolariza el tramo vecino; las epidemias, en el modelo de Kermack y McKendrick (<a href="#ref-kermack1927">1927</a>); la percolación de Broadbent y Hammersley (<a href="#ref-broadbent1957">1957</a>), cuyo umbral en la red cuadrada da Stauffer y Aharony (<a href="#ref-stauffer1994">1994</a>); las avalanchas de la criticalidad autoorganizada de Bak et al. (<a href="#ref-bak1987">1987</a>) y Bak (<a href="#ref-bak1996">1996</a>); y los frentes de reacción-difusión de Fisher (<a href="#ref-fisher1937">1937</a>).</p>
+<h2 id="sec:modelo">3. Modelo</h2>
+<h3 id="reglas">3.1. Reglas</h3>
+<p>Hay $N$ fichas, en una fila de 24 o en una red cuadrada de $25 \times 15$. Las energías del modelo están en una unidad arbitraria común. Cada ficha $i$ tiene una barrera $E_{a,i}$ y acumula la energía que recibe; cae cuando la energía acumulada alcanza su barrera. Al caer libera $Q$ y entrega $\eta Q$ a su vecina siguiente en la fila, o $\eta Q/4$ a cada uno de sus cuatro lados en la red, donde la energía que sale por el borde se pierde. Una ficha caída no recibe más energía. La simulación avanza por pasos: en cada uno caen todas las fichas que alcanzaron su barrera. La primera ficha, en la red la del centro, recibe un empujón $E_0$. Las barreras pueden variar de ficha a ficha como $E_{a,i} = E_a(1 + v\,u_i)$, con $u_i$ uniforme en $[-1, 1]$ y $v$ la variabilidad. Un catalizador baja todas las barreras a la mitad.</p>
+<h3 id="condiciones-de-propagación">3.2. Condiciones de propagación</h3>
+<p>En una fila sin variabilidad, cada ficha recibe exactamente $\eta Q$ de la anterior. La primera cae si $E_0 \ge E_a$, y la cadena se sostiene si y solo si</p>
+<div class="ecuacion">\begin{equation}\label{eq:fila}
+\eta\, Q \ge E_a ,
+\end{equation}</div>
+<p>una desigualdad entre energías en la misma unidad. Después de la primera ficha, el empujón ya no importa: un empujón enorme no salva una cadena con $\eta Q &lt; E_a$. En la red, las fichas vecinas del centro reciben $\eta Q/4$, y la cadena sale del centro si</p>
+<div class="ecuacion">\begin{equation}\label{eq:red}
+\frac{\eta\, Q}{4} \ge E_a .
+\end{equation}</div>
+<p>Una vez en marcha, una ficha de la red puede recibir energía de varias vecinas caídas, así que tolera barreras irregulares que cortarían una fila. El frente avanza un sitio por paso en distancia de Manhattan: con el empujón en $(c_0, f_0)$, la ficha $(c, f)$ cae en el paso $1 + |c - c_0| + |f - f_0|$.</p>
+<h3 id="una-ficha-real">3.3. Una ficha real</h3>
+<p>Una ficha de alto $h$, espesor $e$ y masa $m$, parada, tiene su centro de masa a $h/2$; acostada, a $e/2$. Para caer tiene que inclinarse hasta que su diagonal quede vertical, con el centro de masa a $\sqrt{h^2 + e^2}/2$. La barrera y la energía liberada son</p>
+<div class="ecuacion">\begin{equation}\label{eq:ficha}
+E_a = m g\left(\frac{\sqrt{h^2 + e^2}}{2} - \frac{h}{2}\right), \qquad Q = m g\left(\frac{h}{2} - \frac{e}{2}\right),
+\end{equation}</div>
+<p>en joules, con $m$ en kg, $g$ en $\mathrm{m\,s^{-2}}$ y las longitudes en metros. Su cociente $E_a/Q$ no depende de $m$ ni de $g$.</p>
+<p>Si cada ficha es semejante a la anterior pero $s$ veces más grande, su masa escala como $s^3$ y sus alturas como $s$, así que sus energías escalan como $s^4$. La ficha $n$ tira a la $n+1$, más grande, si $\eta Q_n \ge E_{a,n+1} = s^4 E_{a,n}$, es decir, si</p>
+<div class="ecuacion">\begin{equation}\label{eq:whitehead}
+\eta \ge s^4\,\frac{E_a}{Q} ,
+\end{equation}</div>
+<p>adimensional. Mientras se cumpla, la energía liberada crece en un factor $s^4$ por ficha.</p>
+<h3 id="perfil-de-energía">3.4. Perfil de energía</h3>
+<p>Cada ficha se puede dibujar como una reacción: los reactivos (la ficha parada) a una altura $Q$, una barrera de altura $E_a$ por encima, y los productos (la ficha caída) en cero. Es el diagrama de la teoría del estado de transición, con la ficha inclinada justo sobre su borde como complejo activado (figura <a href="#fig:perfil">1</a>).</p>
+<figure id="fig:perfil"><img src="paper/figuras/perfil.svg" alt="Perfil de energía de una ficha, con $Q = 8$ y $E_a = 5$, y con un catalizador que baja la barrera a la mitad sin cambiar $Q$." loading="lazy"><figcaption><strong>Figura 1.</strong> Perfil de energía de una ficha, con $Q = 8$ y $E_a = 5$, y con un catalizador que baja la barrera a la mitad sin cambiar $Q$.</figcaption></figure>
+<h2 id="sec:resultados">4. Resultados</h2>
+<p>Todas las cifras salen de <code>paper/figuras/generar.js</code>.</p>
+<h3 id="la-fila">4.1. La fila</h3>
+<p>Con $E_a = 5$, $Q = 8$, $\eta = 0{,}7$ y $E_0 = 6$, se cumple $\eta Q = 5{,}6 \ge 5$: caen las 24 fichas en 24 pasos y se liberan $24 \cdot 8 = 192$ unidades. Con $E_a = 6$ la primera ficha cae, porque el empujón alcanza justo, pero a la segunda le llegan $5{,}6 &lt; 6$ y la cadena se corta. Con el catalizador, la barrera baja a 3 y vuelve la cadena completa, con la misma energía liberada. Con un empujón de 4,5, menor que la barrera, no cae ninguna: hay 192 unidades guardadas que no se liberan. Es la metaestabilidad.</p>
+<p>Con variabilidad $v = 0{,}1$, las barreras van de 4,50 a 5,50, todas por debajo de 5,6, y cae la fila entera. Con $v = 0{,}2$ van de 4,01 a 5,99, y la cadena se corta en la tercera ficha.</p>
+<h3 id="la-red">4.2. La red</h3>
+<p>Con $E_a = 1{,}2$ y el resto igual, a cada vecina le llega $\eta Q/4 = 1{,}4 \ge 1{,}2$. Caen las 375 fichas en 20 pasos: el centro está en $(12, 7)$ y la ficha más lejana, en una esquina, está a $12 + 7 = 19$ pasos, más el paso inicial. La cantidad de fichas que caen por paso es 1, 4, 8, 12, …, 28: crece de a 4, como un rombo, hasta que el frente toca los bordes, se estabiliza en 30 y después decrece (figura <a href="#fig:frente">2</a>). Con $E_a = 1{,}4$, justo en el umbral \eqref{eq:red}, cae todo; con $1{,}5$, solo cae el centro. Con $E_a = 1{,}3$ y variabilidad 0,2 o 0,3 cae todo, pero en 24 y 26 pasos: el frente rodea las fichas difíciles y las tira después, cuando ya cayeron varias de sus vecinas.</p>
+<figure id="fig:frente"><img src="paper/figuras/frente.svg" alt="Fichas que caen en cada paso en la red de $25 \times 15$, sin variabilidad y con barreras irregulares." loading="lazy"><figcaption><strong>Figura 2.</strong> Fichas que caen en cada paso en la red de $25 \times 15$, sin variabilidad y con barreras irregulares.</figcaption></figure>
+<h3 id="el-umbral">4.3. El umbral</h3>
+<p>La figura <a href="#fig:umbral">3</a> muestra la fracción de fichas caídas en función de la barrera relativa, con un empujón grande: en la fila y en la red, el paso de cadena completa a cadena muerta ocurre exactamente donde predicen las ecuaciones \eqref{eq:fila} y \eqref{eq:red}.</p>
+<figure id="fig:umbral"><img src="paper/figuras/umbral.svg" alt="Fracción de fichas caídas en función de la barrera dividida por la energía que llega a cada vecina, en la fila y en la red. El umbral está en 1 en los dos casos." loading="lazy"><figcaption><strong>Figura 3.</strong> Fracción de fichas caídas en función de la barrera dividida por la energía que llega a cada vecina, en la fila y en la red. El umbral está en 1 en los dos casos.</figcaption></figure>
+<h3 id="barreras-irregulares">4.4. Barreras irregulares</h3>
+<p>Promediando 100 configuraciones de barreras al azar, con una variabilidad de $\pm 20~\%$ cae en promedio el 20,9 % de la fila y el 98,0 % de la red; con $\pm 50~\%$, el 8,3 % y el 95,0 % (figura <a href="#fig:variabilidad">4</a>). Una fila se corta en el primer eslabón débil. Una red lo rodea, porque una ficha con barrera alta puede acumular energía de varias vecinas: la redundancia la hace robusta.</p>
+<figure id="fig:variabilidad"><img src="paper/figuras/variabilidad.svg" alt="Fracción media de fichas caídas en función de la variabilidad de las barreras, para la fila ($\eta Q = 5{,}6$ y $E_a = 5$) y la red ($\eta Q/4 = 1{,}4$ y $E_a = 1{,}3$), con 100 configuraciones al azar por punto." loading="lazy"><figcaption><strong>Figura 4.</strong> Fracción media de fichas caídas en función de la variabilidad de las barreras, para la fila ($\eta Q = 5{,}6$ y $E_a = 5$) y la red ($\eta Q/4 = 1{,}4$ y $E_a = 1{,}3$), con 100 configuraciones al azar por punto.</figcaption></figure>
+<h3 id="una-ficha-real">4.5. Una ficha real</h3>
+<p>Para una ficha de $h = 48$ mm, ancho 24 mm y $e = 7{,}5$ mm, la ecuación \eqref{eq:ficha} da una subida del centro de masa de 0,291 mm y una bajada de 20,25 mm: $E_a/Q = 0{,}0144$. Con una densidad supuesta de $1200\unid{kg\,m^{-3}}$, típica de un plástico, la ficha pesa 10,4 g, su barrera es de 29,6 µJ y libera 2,06 mJ. La barrera es el 1,4 % de la energía liberada: por eso basta un soplido para tirar una ficha bien parada. Con fichas semejantes, cada una 1,5 veces más grande, la energía crece un factor $1{,}5^4 = 5{,}06$ por ficha y $2{,}8 \times 10^8$ en doce saltos; la decimotercera ficha, empezando por una de 5 mm, mide 649 mm. La ecuación \eqref{eq:whitehead} dice que la amplificación funciona mientras $\eta \ge 0{,}073$: alcanza con que llegue a la ficha siguiente un 7 % de la energía liberada.</p>
+<h2 id="sec:discusion">5. Discusión y limitaciones</h2>
+<h3 id="dónde-falla-la-metáfora">5.1. Dónde falla la metáfora</h3>
+<p>El punto más importante es químico: romper un enlace siempre cuesta energía y formarlo siempre la libera. La energía de una reacción exotérmica viene de que los enlaces de los productos son, en conjunto, más fuertes que los de los reactivos. La idea contraria, que «la energía está en los enlaces que se rompen», es tan persistente que tiene su propia literatura: Boo (<a href="#ref-boo1998">1998</a>) la documentó en estudiantes y Galley (<a href="#ref-galley2004">2004</a>) la llamó un error conceptual persistente. La ficha parada puede reforzar ese error si se lee como «algo que guarda energía y la suelta al romperse». La lectura correcta es otra: la ficha parada es la configuración de reactivos, la caída es la de productos, $Q$ es la diferencia entre ambas y $E_a$ es el costo de pasar por la configuración intermedia, no «el enlace que se rompe».</p>
+<p>Hay dos fallas más. Una reacción real no reparte su energía con una fracción $\eta$ fija sino como calor que se difunde entre muchísimas moléculas, y el calor que no alcanza para activar se disipa, mientras que en el modelo se acumula para siempre. Y una detonación no avanza de a una ficha sino como un frente; por eso existe el modo red, que sigue siendo una caricatura.</p>
+<h3 id="termodinámica-y-cinética">5.2. Termodinámica y cinética</h3>
+<p>El modelo separa dos números que la química también separa. $Q$ es termodinámica: cuánta energía se libera al pasar de reactivos a productos, que a presión constante es el cambio de entalpía y que, por la ley de Hess (<a href="#ref-hess1840">1840</a>), no depende del camino. Por eso un catalizador, que cambia el camino, no cambia $Q$. $E_a$ es cinética: cuán difícil es empezar, y sí depende del camino. «Puede pasar» no es lo mismo que «pasa»: la madera y el oxígeno del aire tienen más energía juntos que el dióxido de carbono y el agua en que se convertirían, pero sin una llama que supere la barrera una mesa dura siglos.</p>
+<h3 id="la-misma-desigualdad-en-otros-sistemas">5.3. La misma desigualdad en otros sistemas</h3>
+<p>La condición \eqref{eq:fila} reaparece con otros nombres. En un reactor nuclear, el factor de multiplicación $k$, el número medio de fisiones que produce cada fisión, decide si la cadena se apaga ($k &lt; 1$), se sostiene ($k = 1$) o crece ($k &gt; 1$); las barras de control hacen lo contrario de un catalizador: bajan $\eta$. En una epidemia, el número reproductivo básico $R_0$ cumple el mismo papel, y si la fracción inmunizada supera</p>
+<div class="ecuacion">\begin{equation}\label{eq:rebano}
+1 - \frac{1}{R_0} ,
+\end{equation}</div>
+<p>la cadena no puede sostenerse (Kermack y McKendrick <a href="#ref-kermack1927">1927</a>). En la red, las fichas difíciles hacen del modelo un problema de percolación con un giro: no están ausentes, sino que necesitan energía de más de una vecina. Y el frente que avanza a velocidad constante es la versión discreta de los frentes de reacción-difusión,</p>
+<div class="ecuacion">\begin{equation}\label{eq:fisher}
+\frac{\partial u}{\partial t} = D\,\frac{\partial^2 u}{\partial x^2} + r\,u(1-u), \qquad v = 2\sqrt{D r},
+\end{equation}</div>
+<p>con $D$ en $\mathrm{m^2\,s^{-1}}$, $r$ en $\mathrm{s^{-1}}$ y $v$ en $\mathrm{m\,s^{-1}}$ (Fisher <a href="#ref-fisher1937">1937</a>).</p>
+<h3 id="en-el-aula">5.4. En el aula</h3>
+<p>El modelo cubre la existencia de una barrera aunque la reacción libere energía, la diferencia entre $Q$ y $E_a$, el efecto de un catalizador y la idea de umbral y propagación. No cubre la temperatura, que en una reacción real es la mano que empuja según la ecuación \eqref{eq:arrhenius}; la concentración; el equilibrio químico; ni las reacciones endotérmicas, que en la metáfora serían fichas que hay que levantar. Una secuencia posible empieza con fichas reales y una regla, para medir la subida y la bajada del centro de masa; sigue con el modelo de la fila y el catalizador; y termina con la red, la percolación y la discusión explícita de dónde falla la metáfora, para que la analogía no se convierta en un error conceptual.</p>
+<h3 id="limitaciones">5.5. Limitaciones</h3>
+<ul><li>Es una metáfora, no una simulación química: no hay temperatura, difusión del calor ni cinética real.</li><li>La regla de reparto de la energía es una simplificación elegida para que el umbral se vea claro, y la energía acumulada no se disipa.</li><li>Las energías del modelo no tienen unidades; solo las de la ficha real, que además dependen de una densidad supuesta.</li><li>El catalizador baja siempre la barrera exactamente a la mitad.</li></ul>
+<h2 id="sec:conclusiones">6. Conclusiones y trabajo futuro</h2>
+<p>Una fila de fichas reúne tres ideas que la química tardó décadas en formular: que casi todo lo que puede liberar energía necesita un empujón inicial, que las cosas pueden estar quietas sin estar a salvo y que una liberación de energía se sostiene sola si cada eslabón activa al siguiente. El modelo reduce todo a la desigualdad $\eta Q \ge E_a$, muestra qué hace un catalizador y por qué una red tolera mucho mejor que una fila las barreras irregulares, y deja claro dónde la metáfora deja de servir. El trabajo futuro es agregar un modo de fichas crecientes que verifique la condición \eqref{eq:whitehead}, una versión con temperatura en la que las fichas tiemblan y algunas caen solas, y probar la secuencia didáctica con fichas reales.</p>
+<h2 id="declaración-de-uso-de-ia">Declaración de uso de IA</h2>
+<p>Este trabajo se redactó con asistencia de Claude (Anthropic), un modelo de lenguaje, a partir de una guía previa del autor. El modelo propuso la estructura, la redacción, las derivaciones y chequeos de unidades y el script que genera las figuras; el alcance y las decisiones son del autor, que es responsable del contenido. Las referencias se verificaron contra Crossref, Open Library y las páginas citadas con <code>paper/verificar_bib.py</code>, y todas las cifras de la sección <a href="#sec:resultados">4</a> salen de <code>paper/figuras/generar.js</code>.</p>
+<h2 id="referencias">Referencias</h2><ol class="refs"><li id="ref-anderson1995">Anderson, P. W. (1995). Through the glass lightly. <i>Science</i>, <i>267</i>(5204), 1615–1616. <a href="https://doi.org/10.1126/science.267.5204.1615-e">https://doi.org/10.1126/science.267.5204.1615-e</a></li><li id="ref-arrhenius1889">Arrhenius, S. (1889). Über die Reaktionsgeschwindigkeit bei der Inversion von Rohrzucker durch Säuren. <i>Zeitschrift für Physikalische Chemie</i>, <i>4</i>(1), 226–248. <a href="https://doi.org/10.1515/zpch-1889-0416">https://doi.org/10.1515/zpch-1889-0416</a></li><li id="ref-bak1987">Bak, P., Tang, C. y Wiesenfeld, K. (1987). Self-organized criticality: An explanation of the 1/f noise. <i>Physical Review Letters</i>, <i>59</i>(4), 381–384. <a href="https://doi.org/10.1103/PhysRevLett.59.381">https://doi.org/10.1103/PhysRevLett.59.381</a></li><li id="ref-bak1996">Bak, P. (1996). <i>How Nature Works: The Science of Self-Organized Criticality</i>. Copernicus. <a href="https://openlibrary.org/works/OL3265980W">https://openlibrary.org/works/OL3265980W</a></li><li id="ref-bodenstein1913">Bodenstein, M. (1913). Eine Theorie der photochemischen Reaktionsgeschwindigkeiten. <i>Zeitschrift für Physikalische Chemie</i>, <i>85</i>(1), 329–397. <a href="https://doi.org/10.1515/zpch-1913-8512">https://doi.org/10.1515/zpch-1913-8512</a></li><li id="ref-boo1998">Boo, H. K. (1998). Students&#x27; understandings of chemical bonds and the energetics of chemical reactions. <i>Journal of Research in Science Teaching</i>, <i>35</i>(5), 569–581. <a href="https://doi.org/10.1002/(SICI)1098-2736(199805)35:5&lt;569::AID-TEA6&gt;3.0.CO;2-N">https://doi.org/10.1002/(SICI)1098-2736(199805)35:5&lt;569::AID-TEA6&gt;3.0.CO;2-N</a></li><li id="ref-broadbent1957">Broadbent, S. R. y Hammersley, J. M. (1957). Percolation processes: I. Crystals and mazes. <i>Mathematical Proceedings of the Cambridge Philosophical Society</i>, <i>53</i>(3), 629–641. <a href="https://doi.org/10.1017/S0305004100032680">https://doi.org/10.1017/S0305004100032680</a></li><li id="ref-evans1935">Evans, M. G. y Polanyi, M. (1935). Some applications of the transition state method to the calculation of reaction velocities, especially in solution. <i>Transactions of the Faraday Society</i>, <i>31</i>, 875–894. <a href="https://doi.org/10.1039/TF9353100875">https://doi.org/10.1039/TF9353100875</a></li><li id="ref-eyring1935">Eyring, H. (1935). The activated complex in chemical reactions. <i>The Journal of Chemical Physics</i>, <i>3</i>(2), 107–115. <a href="https://doi.org/10.1063/1.1749604">https://doi.org/10.1063/1.1749604</a></li><li id="ref-farman1985">Farman, J. C., Gardiner, B. G. y Shanklin, J. D. (1985). Large losses of total ozone in Antarctica reveal seasonal ClOx/NOx interaction. <i>Nature</i>, <i>315</i>(6016), 207–210. <a href="https://doi.org/10.1038/315207a0">https://doi.org/10.1038/315207a0</a></li><li id="ref-fisher1937">Fisher, R. A. (1937). The wave of advance of advantageous genes. <i>Annals of Eugenics</i>, <i>7</i>(4), 355–369. <a href="https://doi.org/10.1111/j.1469-1809.1937.tb02153.x">https://doi.org/10.1111/j.1469-1809.1937.tb02153.x</a></li><li id="ref-galley2004">Galley, W. C. (2004). Exothermic bond breaking: A persistent misconception. <i>Journal of Chemical Education</i>, <i>81</i>(4), 523–525. <a href="https://doi.org/10.1021/ed081p523">https://doi.org/10.1021/ed081p523</a></li><li id="ref-hess1840">Hess, H. (1840). Thermochemische Untersuchungen. <i>Annalen der Physik</i>, <i>126</i>(6), 385–404. <a href="https://doi.org/10.1002/andp.18401260620">https://doi.org/10.1002/andp.18401260620</a></li><li id="ref-hodgkin1952">Hodgkin, A. L. y Huxley, A. F. (1952). A quantitative description of membrane current and its application to conduction and excitation in nerve. <i>The Journal of Physiology</i>, <i>117</i>(4), 500–544. <a href="https://doi.org/10.1113/jphysiol.1952.sp004764">https://doi.org/10.1113/jphysiol.1952.sp004764</a></li><li id="ref-kermack1927">Kermack, W. O. y McKendrick, A. G. (1927). A contribution to the mathematical theory of epidemics. <i>Proceedings of the Royal Society of London A</i>, <i>115</i>(772), 700–721. <a href="https://doi.org/10.1098/rspa.1927.0118">https://doi.org/10.1098/rspa.1927.0118</a></li><li id="ref-kramers1940">Kramers, H. A. (1940). Brownian motion in a field of force and the diffusion model of chemical reactions. <i>Physica</i>, <i>7</i>(4), 284–304. <a href="https://doi.org/10.1016/S0031-8914(40)90098-2">https://doi.org/10.1016/S0031-8914(40)90098-2</a></li><li id="ref-mclachlan1983">McLachlan, B. G., Beaupre, G., Cox, A. B. y Gore, L. (1983). Falling dominoes (D. E. Daykin). <i>SIAM Review</i>, <i>25</i>(3), 403–404. <a href="https://doi.org/10.1137/1025085">https://doi.org/10.1137/1025085</a></li><li id="ref-meitner1939">Meitner, L. y Frisch, O. R. (1939). Disintegration of uranium by neutrons: A new type of nuclear reaction. <i>Nature</i>, <i>143</i>(3615), 239–240. <a href="https://doi.org/10.1038/143239a0">https://doi.org/10.1038/143239a0</a></li><li id="ref-molina1974">Molina, M. J. y Rowland, F. S. (1974). Stratospheric sink for chlorofluoromethanes: Chlorine atom-catalysed destruction of ozone. <i>Nature</i>, <i>249</i>(5460), 810–812. <a href="https://doi.org/10.1038/249810a0">https://doi.org/10.1038/249810a0</a></li><li id="ref-saiki1985">Saiki, R. K., Scharf, S., Faloona, F., Mullis, K. B., Horn, G. T., Erlich, H. A. y Arnheim, N. (1985). Enzymatic amplification of β-globin genomic sequences and restriction site analysis for diagnosis of sickle cell anemia. <i>Science</i>, <i>230</i>(4732), 1350–1354. <a href="https://doi.org/10.1126/science.2999980">https://doi.org/10.1126/science.2999980</a></li><li id="ref-semenov1935">Semenov, N. N. (1935). <i>Chemical Kinetics and Chain Reactions</i>. Clarendon Press. <a href="https://openlibrary.org/works/OL12937315W">https://openlibrary.org/works/OL12937315W</a></li><li id="ref-shaw1978">Shaw, D. E. (1978). Mechanics of a chain of dominoes. <i>American Journal of Physics</i>, <i>46</i>(6), 640–642. <a href="https://doi.org/10.1119/1.11221">https://doi.org/10.1119/1.11221</a></li><li id="ref-smil2001">Smil, V. (2001). <i>Enriching the Earth: Fritz Haber, Carl Bosch, and the Transformation of World Food Production</i>. MIT Press. <a href="https://openlibrary.org/works/OL1855338W">https://openlibrary.org/works/OL1855338W</a></li><li id="ref-staudinger1920">Staudinger, H. (1920). Über Polymerisation. <i>Berichte der deutschen chemischen Gesellschaft</i>, <i>53</i>(6), 1073–1085. <a href="https://doi.org/10.1002/cber.19200530627">https://doi.org/10.1002/cber.19200530627</a></li><li id="ref-stauffer1994">Stauffer, D. y Aharony, A. (1994). <i>Introduction to Percolation Theory</i>. Taylor &amp; Francis. <a href="https://openlibrary.org/works/OL20989433W">https://openlibrary.org/works/OL20989433W</a></li><li id="ref-vanleeuwen2010">van Leeuwen, J. M. J. (2010). The domino effect. <i>American Journal of Physics</i>, <i>78</i>(7), 721–727. <a href="https://doi.org/10.1119/1.3406154">https://doi.org/10.1119/1.3406154</a></li><li id="ref-whitehead1983">Whitehead, L. A. (1983). Domino “chain reaction”. <i>American Journal of Physics</i>, <i>51</i>(2), 182. <a href="https://doi.org/10.1119/1.13456">https://doi.org/10.1119/1.13456</a></li><li id="ref-wolfenden2001">Wolfenden, R. y Snider, M. J. (2001). The depth of chemical time and the power of enzymes as catalysts. <i>Accounts of Chemical Research</i>, <i>34</i>(12), 938–945. <a href="https://doi.org/10.1021/ar000058i">https://doi.org/10.1021/ar000058i</a></li></ol>
+<footer>
+<p>Texto, figuras y PDF bajo licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>: podés compartirlo y adaptarlo citando al autor. El código que genera las figuras está bajo licencia MIT. Esta página se genera a partir de <code>paper/paper.tex</code>.</p>
+</footer>
+</main>
 </body>
 </html>

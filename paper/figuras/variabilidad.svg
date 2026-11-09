@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13">
+<rect width="640" height="400" fill="#ffffff"/>
+<line x1="70" y1="40" x2="70" y2="344" stroke="#e3e1db"/>
+<text x="70" y="362" text-anchor="middle" fill="#333">0</text>
+<line x1="180.4" y1="40" x2="180.4" y2="344" stroke="#e3e1db"/>
+<text x="180.4" y="362" text-anchor="middle" fill="#333">0,1</text>
+<line x1="290.8" y1="40" x2="290.8" y2="344" stroke="#e3e1db"/>
+<text x="290.8" y="362" text-anchor="middle" fill="#333">0,2</text>
+<line x1="401.20000000000005" y1="40" x2="401.20000000000005" y2="344" stroke="#e3e1db"/>
+<text x="401.20000000000005" y="362" text-anchor="middle" fill="#333">0,3</text>
+<line x1="511.6" y1="40" x2="511.6" y2="344" stroke="#e3e1db"/>
+<text x="511.6" y="362" text-anchor="middle" fill="#333">0,4</text>
+<line x1="622" y1="40" x2="622" y2="344" stroke="#e3e1db"/>
+<text x="622" y="362" text-anchor="middle" fill="#333">0,5</text>
+<line x1="70" y1="344" x2="622" y2="344" stroke="#e3e1db"/>
+<text x="62" y="348" text-anchor="end" fill="#333">0</text>
+<line x1="70" y1="271.6190476190476" x2="622" y2="271.6190476190476" stroke="#e3e1db"/>
+<text x="62" y="275.6190476190476" text-anchor="end" fill="#333">0,25</text>
+<line x1="70" y1="199.23809523809524" x2="622" y2="199.23809523809524" stroke="#e3e1db"/>
+<text x="62" y="203.23809523809524" text-anchor="end" fill="#333">0,5</text>
+<line x1="70" y1="126.85714285714286" x2="622" y2="126.85714285714286" stroke="#e3e1db"/>
+<text x="62" y="130.85714285714286" text-anchor="end" fill="#333">0,75</text>
+<line x1="70" y1="54.47619047619048" x2="622" y2="54.47619047619048" stroke="#e3e1db"/>
+<text x="62" y="58.47619047619048" text-anchor="end" fill="#333">1</text>
+<rect x="70" y="40" width="552" height="304" fill="none" stroke="#333"/>
+<text x="346" y="386" text-anchor="middle" fill="#111">Variabilidad de las barreras (±)</text>
+<text transform="translate(18 192) rotate(-90)" text-anchor="middle" fill="#111">Fracción caída (media de 100 semillas)</text>
+<clipPath id="area"><rect x="70" y="40" width="552" height="304"/></clipPath><g clip-path="url(#area)">
+<path d="M70.00 54.48 L92.08 54.48 L114.16 54.48 L136.24 54.48 L158.32 54.48 L180.40 54.48 L202.48 54.48 L224.56 190.43 L246.64 236.76 L268.72 259.80 L290.80 283.44 L312.88 290.44 L334.96 295.02 L357.04 297.31 L379.12 299.97 L401.20 304.55 L423.28 305.76 L445.36 306.97 L467.44 309.14 L489.52 311.91 L511.60 313.72 L533.68 315.05 L555.76 317.58 L577.84 318.79 L599.92 319.03 L622.00 319.87" fill="none" stroke="#2a55c9" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M70.00 54.48 L92.08 54.48 L114.16 54.48 L136.24 54.48 L158.32 54.48 L180.40 54.48 L202.48 54.48 L224.56 54.48 L246.64 54.48 L268.72 57.36 L290.80 60.25 L312.88 63.14 L334.96 68.91 L357.04 68.91 L379.12 68.91 L401.20 68.91 L423.28 68.91 L445.36 68.91 L467.44 68.91 L489.52 68.91 L511.60 68.91 L533.68 68.91 L555.76 68.91 L577.84 68.91 L599.92 68.91 L622.00 68.91" fill="none" stroke="#c25a00" stroke-width="2.2" stroke-linejoin="round"/>
+</g>
+<line x1="70" y1="24" x2="92" y2="24" stroke="#2a55c9" stroke-width="3"/>
+<text x="98" y="28" fill="#111">Fila (Ea = 5, η Q = 5,6)</text>
+<line x1="282.8" y1="24" x2="304.8" y2="24" stroke="#c25a00" stroke-width="3"/>
+<text x="310.8" y="28" fill="#111">Red (Ea = 1,3, η Q / 4 = 1,4)</text>
+</svg>
